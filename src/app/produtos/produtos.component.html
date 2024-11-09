@@ -1,0 +1,30 @@
+
+<div class="card-container">
+
+    @for (produto of produtos; track $index) {
+        <p-card
+            [header]="produto.nome"
+            [subheader]="produto.categorias[0]"
+            [style]="{ width: '360px' }"
+        >
+
+        <ng-template pTemplate="header">
+            <img alt="Card" src={{produto.img}} />
+        </ng-template>
+
+        <p class="card-content">$ {{produto.preco}}</p>
+
+        <ng-template pTemplate="footer">
+            <p-button
+                label="Adicionar ao Carrinho"
+                [style]="{ width: '100%' }"
+                outlined="true"
+                icon="pi pi-shopping-cart"
+            />
+        </ng-template>
+
+    </p-card>
+}
+
+</div>
+
