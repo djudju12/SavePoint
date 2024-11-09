@@ -3,18 +3,8 @@ import { Produto } from "./produtos.model";
 
 @Injectable({ providedIn: 'root' })
 export class ProdutoService {
-  private readonly PRODUTOS_STORAGE_KEY = "SAVE_POINT_PRODUTOS";
-
   findAll(): Produto[] {
-    const produtsStr = window.localStorage.getItem(this.PRODUTOS_STORAGE_KEY) || '';
-    return JSON.parse(produtsStr).splice(0, 10);
-  }
-
-  createAllProducts() {
-    const produtsStr = window.localStorage.getItem(this.PRODUTOS_STORAGE_KEY) || '';
-    if (produtsStr === '') {
-      window.localStorage.setItem(this.PRODUTOS_STORAGE_KEY, JSON.stringify(PRODUTOS));
-    }
+    return PRODUTOS.splice(0, 20);
   }
 }
 

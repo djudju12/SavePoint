@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { ProdutoService } from './produtos/produtos.service';
 
 @Component({
   selector: 'app-root',
@@ -14,9 +13,4 @@ import { ProdutoService } from './produtos/produtos.service';
 export class AppComponent {
   title = 'SavePoint';
 
-  constructor (
-    private produtosService: ProdutoService
-  ) {
-    produtosService.createAllProducts();
-  }
 }
