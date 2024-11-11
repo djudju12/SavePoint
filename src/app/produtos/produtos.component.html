@@ -1,7 +1,7 @@
 
 <div class="card-container">
 
-    @for (produto of produtos; track $index) {
+    @for (produto of produtos.items; track produto.id) {
         <p-card
             [header]="produto.nome"
             [subheader]="produto.categorias[0]"
@@ -39,3 +39,10 @@
 
 </div>
 
+<p-paginator
+    (onPageChange)="onPageChange($event)"
+    [first]="0"
+    [rows]="this.initalPageSize"
+    [totalRecords]="produtos.totalItems"
+    [rowsPerPageOptions]="[10, 20, 30]"
+/>

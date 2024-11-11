@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { Produto } from "../produtos/produtos.model";
+import { Produto } from "../produtos/produtos.service";
 
 export class Carrinho {
     public produtos: Produto[] = []

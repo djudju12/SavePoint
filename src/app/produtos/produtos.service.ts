@@ -1,8 +1,34 @@
 import { Injectable } from "@angular/core";
-import { Produto } from "./produtos.model";
+
+export class Produto {
+  constructor(
+    public id: number,
+    public preco: number,
+    public nome: string,
+    public categorias: string[],
+    public img: string
+  ) { }
+}
+
+export interface Page<T> {
+  items: T[];
+  totalItems: number;
+  pageSize: number;
+  page: number;
+}
 
 @Injectable({ providedIn: 'root' })
 export class ProdutoService {
+
+  query(page: number = 0, pageSize: number = 10): Page<Produto> {
+    return {
+      items: PRODUTOS.slice(page*pageSize, (page + 1)*pageSize),
+      page: page,
+      pageSize: pageSize,
+      totalItems: PRODUTOS.length
+    }
+  }
+
   findAll(): Produto[] {
     return PRODUTOS.splice(0, 20);
   }
