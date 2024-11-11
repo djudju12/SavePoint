@@ -15,12 +15,23 @@
         <p class="card-content">$ {{produto.preco}}</p>
 
         <ng-template pTemplate="footer">
-            <p-button
-                label="Adicionar ao Carrinho"
-                [style]="{ width: '100%' }"
-                outlined="true"
-                icon="pi pi-shopping-cart"
-            />
+            @if (!this.carrinho.alreadyInCart(produto)) {
+                <p-button
+                    (onClick)="addProduto(produto)"
+                    label="Adicionar ao Carrinho"
+                    [style]="{ width: '100%' }"
+                    outlined="true"
+                    icon="pi pi-cart-plus"
+                />
+            } @else {
+                <p-button
+                    (onClick)="removeProduto(produto)"
+                    severity="danger"
+                    label="Remover do Carrinho"
+                    [style]="{ width: '100%' }"
+                    icon="pi pi-cart-minus"
+                />
+            }
         </ng-template>
 
     </p-card>

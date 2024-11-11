@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
+import { Carrinho, CarrinhoService } from '../shared/carrinho.service';
 import { Produto } from './produtos.model';
 import { ProdutoService } from './produtos.service';
 
@@ -11,15 +12,25 @@ import { ProdutoService } from './produtos.service';
   templateUrl: './produtos.component.html',
   styleUrl: './produtos.component.css'
 })
-export class ProdutosComponent implements OnInit {
+export class ProdutosComponent {
   produtos: Produto[] = [];
+  carrinho: Carrinho;
 
   constructor (
-    private produtoSevice: ProdutoService
-  ) { }
-
-  ngOnInit(): void {
-    this.produtos = this.produtoSevice.findAll();
+    private produtoService: ProdutoService,
+    private carrinhoService: CarrinhoService
+  ) {
+    this.produtos = this.produtoService.findAll();
+    this.carrinho = this.carrinhoService.findCarrinho();
   }
 
+  addProduto(produto: Produto) {
+    this.carrinho.add(produto);
+    this.carrinhoService.save(this.carrinho);
+  }
+
+  removeProduto(produto: Produto) {
+    this.carrinho.remove(produto);
+    this.carrinhoService.save(this.carrinho);
+  }
 }
