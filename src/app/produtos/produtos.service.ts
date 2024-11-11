@@ -6,7 +6,8 @@ export class Produto {
     public preco: number,
     public nome: string,
     public categorias: string[],
-    public img: string
+    public img: string,
+    public rating: number
   ) { }
 }
 

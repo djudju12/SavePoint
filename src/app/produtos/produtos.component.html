@@ -12,7 +12,17 @@
             <img alt="Card" src={{produto.img}} />
         </ng-template>
 
-        <p class="card-content">$ {{produto.preco}}</p>
+        <div class="card-content-container">
+            <div class="star-rating">
+                <span [class]="getStarRating(produto.rating, 0.20)"></span>
+                <span [class]="getStarRating(produto.rating, 0.40)"></span>
+                <span [class]="getStarRating(produto.rating, 0.60)"></span>
+                <span [class]="getStarRating(produto.rating, 0.80)"></span>
+                <span [class]="getStarRating(produto.rating, 0.96)"></span>
+            </div>
+            <p class="card-content">$ {{produto.preco}}</p>
+
+        </div>
 
         <ng-template pTemplate="footer">
             @if (!this.carrinho.alreadyInCart(produto)) {

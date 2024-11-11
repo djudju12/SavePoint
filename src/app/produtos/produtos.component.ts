@@ -43,4 +43,12 @@ export class ProdutosComponent {
   onPageChange(paginator: PaginatorState) {
     this.produtos = this.produtoService.query(paginator.page, paginator.rows);
   }
+
+  getStarRating(rating: number, checkingRate: number) {
+    if (rating >= checkingRate) {
+      return 'pi pi-star-fill';
+    }
+
+    return 'pi pi-star';
+  }
 }

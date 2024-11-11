@@ -38,3 +38,26 @@ body {
 .p-card-footer {
     padding: 0%;
 }
+
+.card-content-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card-content {
+    margin: 0;
+}
+
+.pi {
+    font-size: 1.5rem;
+}
+
+.star-rating span {
+    margin-right: 2px;  /* Adds a gap between each star */
+    color: rgb(59, 130, 246);
+}
+
+.star-rating span:last-child {
+    margin-right: 0;  /* Removes the margin from the last star */
+}
