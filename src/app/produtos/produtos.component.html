@@ -3,9 +3,9 @@
 
     @for (produto of produtos.items; track produto.id) {
         <p-card
+            class="card"
             [header]="produto.nome"
             [subheader]="produto.categorias[0]"
-            [style]="{ width: '360px' }"
         >
 
         <ng-template pTemplate="header">
@@ -48,7 +48,6 @@
 }
 
 </div>
-
 <p-paginator
     (onPageChange)="onPageChange($event)"
     [first]="0"
