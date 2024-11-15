@@ -13,7 +13,7 @@ export class Carrinho {
   }
 
   public remove(produto: Produto) {
-    const newProdutos = this.produtos.filter(p => p.id !== produto.id);
+    this.produtos = this.produtos.filter(p => p.id !== produto.id);
   }
 
   public alreadyInCart(produto: Produto): boolean {
