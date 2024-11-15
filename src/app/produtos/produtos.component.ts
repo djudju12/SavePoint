@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { PaginatorModule, PaginatorState } from 'primeng/paginator';
@@ -16,7 +16,7 @@ import { Page, Produto, ProdutoService } from './produtos.service';
   templateUrl: './produtos.component.html',
   styleUrl: './produtos.component.css'
 })
-export class ProdutosComponent {
+export class ProdutosComponent implements OnInit, OnDestroy {
   produtos: Page<Produto>;
   carrinho: Carrinho;
 
@@ -28,6 +28,14 @@ export class ProdutosComponent {
   ) {
     this.produtos = this.produtoService.query(0, this.initalPageSize);
     this.carrinho = this.carrinhoService.findCarrinho();
+  }
+
+  ngOnInit(): void {
+    this.carrinhoService.carrinhoTopic.subscribe(newCarrinho => this.carrinho = newCarrinho)
+  }
+
+  ngOnDestroy(): void {
+    this.carrinhoService.carrinhoTopic.unsubscribe();
   }
 
   addProduto(produto: Produto) {

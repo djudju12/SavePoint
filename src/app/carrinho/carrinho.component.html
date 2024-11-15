@@ -1,0 +1,61 @@
+<p-dialog
+    header="MEU CARRINHO"
+    [modal]="true"
+    [(visible)]="isVisible"
+    [dismissableMask]="true"
+    [style]="{ width: '50rem', height: '100vh'}"
+>
+
+    <p-divider type="solid" [style]="{marginTop: '0'}" />
+
+    <div class="content">
+
+        @for (game of carrinho.produtos; track game.id) {
+            <div class="content-item">
+
+                <div class="image-container">
+                    <img [src]="game.img"
+                    style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+
+                <div class="text-item">
+
+                    <div class="info-item">
+                        <span class="item-title">{{game.nome}}</span>
+                        <span class="item-description">{{game.categorias[0]}}</span>
+                    </div>
+
+                    <div class="price-item">
+                        <p class="price">$&nbsp;{{game.preco}}</p>
+                    </div>
+
+                </div>
+            </div>
+        }
+
+    </div>
+
+    <p-divider type="solid" [style]="{marginTop: '2%', marginBottom: '3%'}" />
+
+    <div class="payment">
+
+        <div class="payment-text">
+            <span>Subtotal:</span>
+            <span>$&nbsp;{{carrinho.total().toFixed(2)}}</span>
+        </div>
+
+        <div class="payment-text">
+            <span>Método de Pagamento:</span>
+            <select [(ngModel)]='tipoPagamentoSelecionado'>
+                <option>Pix</option>
+                <option>Cartão</option>
+                <option>Boleto</option>
+            </select>
+        </div>
+
+        <p-button label="Pagar" [style]="{width: '100%'}" (onClick)="pagar()" ></p-button>
+        <p-button label="Limpar Carrinho" [style]="{width: '100%'}" (onClick)="clear()"></p-button>
+    </div>
+
+
+</p-dialog>

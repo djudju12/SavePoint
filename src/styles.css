@@ -26,6 +26,10 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
+.p-dialog-content {
+    overflow-x: hidden;
+}
+
 .p-card-body .p-card-title {
     /* font-size: large; */
     white-space: nowrap;
