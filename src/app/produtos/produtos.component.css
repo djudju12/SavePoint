@@ -8,16 +8,17 @@
 .card-container {
     display: flex;
     flex-wrap: wrap;
-    gap: 16px; /* Adjust the spacing as desired */
+    gap: 16px;
+    margin-top: 2%;
     justify-content: center;
 }
 
 .star-rating span {
-    margin-right: 1px;  /* Adds a gap between each star */
+    margin-right: 1px;
     font-size: medium;
     color: rgb(59, 130, 246);
 }
 
 .star-rating span:last-child {
-    margin-right: 0;  /* Removes the margin from the last star */
+    margin-right: 0;
 }

@@ -1,57 +1,60 @@
 
-<div class="card-container">
+<div class="produtos-page">
 
-    @for (produto of produtos.items; track produto.id) {
-        <p-card
-            class="card"
-            [header]="produto.nome"
-            [subheader]="produto.categorias[0]"
-        >
+    <div class="card-container">
 
-        <ng-template pTemplate="header">
-            <img alt="Card" src={{produto.img}} />
-        </ng-template>
+        @for (produto of produtos.items; track produto.id) {
+            <p-card
+                class="card"
+                [header]="produto.nome"
+                [subheader]="produto.categorias[0]"
+            >
 
-        <div class="card-content-container">
-            <div class="star-rating">
-                <span [class]="getStarRating(produto.rating, 0.20)"></span>
-                <span [class]="getStarRating(produto.rating, 0.40)"></span>
-                <span [class]="getStarRating(produto.rating, 0.60)"></span>
-                <span [class]="getStarRating(produto.rating, 0.80)"></span>
-                <span [class]="getStarRating(produto.rating, 0.96)"></span>
+            <ng-template pTemplate="header">
+                <img alt="Card" src={{produto.img}} />
+            </ng-template>
+
+            <div class="card-content-container">
+                <div class="star-rating">
+                    <span [class]="getStarRating(produto.rating, 0.20)"></span>
+                    <span [class]="getStarRating(produto.rating, 0.40)"></span>
+                    <span [class]="getStarRating(produto.rating, 0.60)"></span>
+                    <span [class]="getStarRating(produto.rating, 0.80)"></span>
+                    <span [class]="getStarRating(produto.rating, 0.96)"></span>
+                </div>
+                <p class="card-content">$ {{produto.preco}}</p>
+
             </div>
-            <p class="card-content">$ {{produto.preco}}</p>
 
-        </div>
+            <ng-template pTemplate="footer">
+                @if (!this.carrinho.alreadyInCart(produto)) {
+                    <p-button
+                        (onClick)="addProduto(produto)"
+                        label="Adicionar ao Carrinho"
+                        [style]="{ width: '100%' }"
+                        outlined="true"
+                        icon="pi pi-cart-plus"
+                    />
+                } @else {
+                    <p-button
+                        (onClick)="removeProduto(produto)"
+                        severity="danger"
+                        label="Remover do Carrinho"
+                        [style]="{ width: '100%' }"
+                        icon="pi pi-cart-minus"
+                    />
+                }
+            </ng-template>
 
-        <ng-template pTemplate="footer">
-            @if (!this.carrinho.alreadyInCart(produto)) {
-                <p-button
-                    (onClick)="addProduto(produto)"
-                    label="Adicionar ao Carrinho"
-                    [style]="{ width: '100%' }"
-                    outlined="true"
-                    icon="pi pi-cart-plus"
-                />
-            } @else {
-                <p-button
-                    (onClick)="removeProduto(produto)"
-                    severity="danger"
-                    label="Remover do Carrinho"
-                    [style]="{ width: '100%' }"
-                    icon="pi pi-cart-minus"
-                />
-            }
-        </ng-template>
+        </p-card>
+    }
 
-    </p-card>
-}
-
+    </div>
+    <p-paginator
+        (onPageChange)="onPageChange($event)"
+        [first]="0"
+        [rows]="this.initalPageSize"
+        [totalRecords]="produtos.totalItems"
+        [rowsPerPageOptions]="[10, 20, 30]"
+    />
 </div>
-<p-paginator
-    (onPageChange)="onPageChange($event)"
-    [first]="0"
-    [rows]="this.initalPageSize"
-    [totalRecords]="produtos.totalItems"
-    [rowsPerPageOptions]="[10, 20, 30]"
-/>
