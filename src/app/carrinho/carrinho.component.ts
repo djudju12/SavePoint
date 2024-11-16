@@ -5,6 +5,7 @@ import { DialogModule } from 'primeng/dialog';
 import { DividerModule } from 'primeng/divider';
 import { DropdownModule } from 'primeng/dropdown';
 import { OrderListModule } from 'primeng/orderlist';
+import { Produto } from '../produtos/produtos.service';
 import { Carrinho, CarrinhoService } from '../shared/carrinho.service';
 import { PagamentoService } from '../shared/pagamento.service';
 
@@ -23,7 +24,7 @@ import { PagamentoService } from '../shared/pagamento.service';
   styleUrl: './carrinho.component.css'
 })
 export class CarrinhoComponent {
-  protected isVisible: boolean = true;
+  protected isVisible: boolean = false;
   tiposPagamento = [ 'Pix', 'Cartão', 'Boleto' ];
   tipoPagamentoSelecionado: string = 'Pix';
   carrinho: Carrinho;
@@ -46,6 +47,12 @@ export class CarrinhoComponent {
 
   clear() {
     this.carrinhoService.clear();
+  }
+
+  removerItem(item: Produto) {
+    console.log(item)
+    this.carrinho.remove(item);
+    this.carrinhoService.save(this.carrinho);
   }
 
   pagar() {
