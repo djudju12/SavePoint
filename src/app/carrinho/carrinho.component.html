@@ -3,7 +3,7 @@
     [modal]="true"
     [(visible)]="isVisible"
     [dismissableMask]="true"
-    [style]="{ width: '50rem', height: '100vh'}"
+    [style]="{ width: '50rem', minWidth: '40rem', height: '100vh', minHeight: '60vh'}"
 >
 
     <p-divider type="solid" [style]="{marginTop: '0'}" />
@@ -27,11 +27,11 @@
 
                     <div class="price-item">
                         <p class="price">$&nbsp;{{game.preco}}</p>
+                        <button class="remove-item-button" (click)="removerItem(game)">
+                           <span class="pi pi-trash"></span>
+                        </button>
                     </div>
 
-                     <button class="remove-item-button" (click)="removerItem(game)">
-                        <span class="pi pi-trash"></span>
-                     </button>
 
                 </div>
             </div>
