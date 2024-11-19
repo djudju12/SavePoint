@@ -1,60 +1,85 @@
 
 <div class="produtos-page">
 
-    <div class="card-container">
-
-        @for (produto of produtos.items; track produto.id) {
-            <p-card
-                class="card"
-                [header]="produto.nome"
-                [subheader]="produto.categorias[0]"
-            >
-
-            <ng-template pTemplate="header">
-                <img alt="Card" src={{produto.img}} />
-            </ng-template>
-
-            <div class="card-content-container">
-                <div class="star-rating">
-                    <span [class]="getStarRating(produto.rating, 0.20)"></span>
-                    <span [class]="getStarRating(produto.rating, 0.40)"></span>
-                    <span [class]="getStarRating(produto.rating, 0.60)"></span>
-                    <span [class]="getStarRating(produto.rating, 0.80)"></span>
-                    <span [class]="getStarRating(produto.rating, 0.96)"></span>
-                </div>
-                <p class="card-content">$ {{produto.preco}}</p>
-
-            </div>
-
-            <ng-template pTemplate="footer">
-                @if (!this.carrinho.alreadyInCart(produto)) {
+    <div class="page-filters card">
+        <div class="categorias">
+            Categorias
+        </div>
+        <div class="categorias-lista">
+            @for (categoria of categorias; track $index) {
+                @if (filtro.includes(categoria)) {
                     <p-button
-                        (onClick)="addProduto(produto)"
-                        label="Adicionar ao Carrinho"
-                        [style]="{ width: '100%' }"
-                        outlined="true"
-                        icon="pi pi-cart-plus"
+                        (onClick)="removerFiltro(categoria)"
+                        [label]="categoria"
+                        [style]="{width: '100%', padding: '0.55rem 0.85rem', fontSize: '0.85rem'}"
                     />
                 } @else {
                     <p-button
-                        (onClick)="removeProduto(produto)"
-                        severity="danger"
-                        label="Remover do Carrinho"
-                        [style]="{ width: '100%' }"
-                        icon="pi pi-cart-minus"
+                        (onClick)="filtrar(categoria)"
+                        [label]="categoria"
+                        outlined="true"
+                        [style]="{width: '100%', padding: '0.55rem 0.85rem', fontSize: '0.85rem'}"
                     />
                 }
-            </ng-template>
-
-        </p-card>
-    }
-
+            }
+        </div>
     </div>
-    <p-paginator
-        (onPageChange)="onPageChange($event)"
-        [first]="0"
-        [rows]="this.initalPageSize"
-        [totalRecords]="produtos.totalItems"
-        [rowsPerPageOptions]="[10, 20, 30]"
-    />
+
+    <div class="card-container">
+
+        <div class="cards">
+            @for (produto of produtos.items; track produto.id) {
+                <p-card
+                    class="card"
+                    [header]="produto.nome"
+                    [subheader]="produto.categorias[0]"
+                >
+
+                <ng-template pTemplate="header">
+                    <img class="card-image" alt="Card" src={{produto.img}} />
+                </ng-template>
+
+                <div class="card-content-container">
+                    <div class="star-rating">
+                        <span [class]="getStarRating(produto.rating, 0.20)"></span>
+                        <span [class]="getStarRating(produto.rating, 0.40)"></span>
+                        <span [class]="getStarRating(produto.rating, 0.60)"></span>
+                        <span [class]="getStarRating(produto.rating, 0.80)"></span>
+                        <span [class]="getStarRating(produto.rating, 0.96)"></span>
+                    </div>
+
+                    <p class="card-content">$ {{produto.preco}}</p>
+
+                </div>
+
+                <ng-template pTemplate="footer">
+                    @if (!this.carrinho.alreadyInCart(produto)) {
+                        <p-button
+                            (onClick)="addProduto(produto)"
+                            label="Adicionar ao Carrinho"
+                            [style]="{ width: '100%', padding: '0.55rem 0.85rem'}"
+                            outlined="true"
+                            icon="pi pi-cart-plus"
+                        />
+                    } @else {
+                        <p-button
+                            (onClick)="removeProduto(produto)"
+                            severity="danger"
+                            label="Remover do Carrinho"
+                            [style]="{ width: '100%', padding: '0.55rem 0.85rem' }"
+                            icon="pi pi-cart-minus"
+                        />
+                    }
+                </ng-template>
+            </p-card>
+        }
+    </div>
+        <p-paginator
+            (onPageChange)="onPageChange($event)"
+            [first]="0"
+            [rows]="this.pageSize"
+            [totalRecords]="produtos.totalItems"
+            [rowsPerPageOptions]="[10, 20, 30]"
+        />
+    </div>
 </div>

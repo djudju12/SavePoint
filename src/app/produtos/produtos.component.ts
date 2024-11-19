@@ -17,17 +17,21 @@ import { Page, Produto, ProdutoService } from './produtos.service';
   styleUrl: './produtos.component.css'
 })
 export class ProdutosComponent implements OnInit, OnDestroy {
-  produtos: Page<Produto>;
+  produtos!: Page<Produto>;
   carrinho: Carrinho;
+  categorias: string[];
+  filtro: string[] = [];
 
-  readonly initalPageSize = 20;
+  pageSize = 20;
+  private page = 0;
 
   constructor (
     private produtoService: ProdutoService,
     private carrinhoService: CarrinhoService
   ) {
-    this.produtos = this.produtoService.query(0, this.initalPageSize);
     this.carrinho = this.carrinhoService.findCarrinho();
+    this.categorias = this.produtoService.categories();
+    this.find();
   }
 
   ngOnInit(): void {
@@ -36,6 +40,10 @@ export class ProdutosComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.carrinhoService.carrinhoTopic.unsubscribe();
+  }
+
+  find() {
+    this.produtos = this.produtoService.query(this.page, this.pageSize, this.filtro);
   }
 
   addProduto(produto: Produto) {
@@ -49,7 +57,9 @@ export class ProdutosComponent implements OnInit, OnDestroy {
   }
 
   onPageChange(paginator: PaginatorState) {
-    this.produtos = this.produtoService.query(paginator.page, paginator.rows);
+    this.page = paginator.page || 0;
+    this.pageSize = paginator.rows || 20;
+    this.find();
   }
 
   getStarRating(rating: number, checkingRate: number) {
@@ -58,5 +68,17 @@ export class ProdutosComponent implements OnInit, OnDestroy {
     }
 
     return 'pi pi-star';
+  }
+
+  filtrar(categoria: string) {
+    this.filtro.push(categoria);
+    this.page = 0;
+    this.find();
+  }
+
+  removerFiltro(categoria: string) {
+    this.filtro = this.filtro.filter(c => c !== categoria);
+    this.page = 0;
+    this.find();
   }
 }

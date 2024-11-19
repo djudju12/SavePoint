@@ -21,19 +21,35 @@ export interface Page<T> {
 @Injectable({ providedIn: 'root' })
 export class ProdutoService {
 
-  query(page: number = 0, pageSize: number = 10): Page<Produto> {
+  categories(): string[] {
+    return MOST_POPULAR_CATEGORIES;
+  }
+
+  query(page: number = 0, pageSize: number = 10, categories: string[] | undefined = []): Page<Produto> {
+    const games =  categories && categories.length > 0 ? this.filterCategories(categories, PRODUTOS) : PRODUTOS;
+
     return {
-      items: PRODUTOS.slice(page*pageSize, (page + 1)*pageSize),
+      items: games.slice(page*pageSize, (page + 1)*pageSize),
       page: page,
       pageSize: pageSize,
-      totalItems: PRODUTOS.length
+      totalItems: games.length
     }
   }
 
-  findAll(): Produto[] {
-    return PRODUTOS.splice(0, 20);
+  private filterCategories(categories: string[], games: Produto[]) {
+    return games.filter(game => {
+      for (let category of categories) {
+        if (!game.categorias.includes(category)) {
+            return false;
+        }
+      }
+
+      return true;
+    });
   }
 }
+
+const MOST_POPULAR_CATEGORIES = [ "Racing", "MMO", "Sports", "Casual", "Strategy", "RPG", "Simulation", "Adventure", "Indie", "Action" ].reverse();
 
 const PRODUTOS = [
   {
