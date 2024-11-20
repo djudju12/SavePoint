@@ -1,26 +1,15 @@
 
 <div class="produtos-page">
 
-    <div class="page-filters card">
-        <div class="categorias">
-            Categorias
-        </div>
+    <div class="page-filters">
+
         <div class="categorias-lista">
             @for (categoria of categorias; track $index) {
-                @if (filtro.includes(categoria)) {
-                    <p-button
-                        (onClick)="removerFiltro(categoria)"
-                        [label]="categoria"
-                        [style]="{width: '100%', padding: '0.55rem 0.85rem', fontSize: '0.85rem'}"
-                    />
-                } @else {
-                    <p-button
-                        (onClick)="filtrar(categoria)"
-                        [label]="categoria"
-                        outlined="true"
-                        [style]="{width: '100%', padding: '0.55rem 0.85rem', fontSize: '0.85rem'}"
-                    />
-                }
+                <p-button
+                    (onClick)="filtrar(categoria.name)"
+                    [label]="categoria.name"
+                    [styleClass]="'filter-button sp-button ' + categoria.color"
+                />
             }
         </div>
     </div>
@@ -58,8 +47,8 @@
                             (onClick)="addProduto(produto)"
                             label="Adicionar ao Carrinho"
                             [style]="{ width: '100%', padding: '0.55rem 0.85rem'}"
-                            outlined="true"
                             icon="pi pi-cart-plus"
+                            [styleClass]="'filter-button sp-button sp-button-blue'"
                         />
                     } @else {
                         <p-button
@@ -68,6 +57,7 @@
                             label="Remover do Carrinho"
                             [style]="{ width: '100%', padding: '0.55rem 0.85rem' }"
                             icon="pi pi-cart-minus"
+                            [styleClass]="'filter-button sp-button sp-button-red'"
                         />
                     }
                 </ng-template>

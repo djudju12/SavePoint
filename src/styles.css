@@ -73,3 +73,32 @@ body {
 .card-content {
     margin: 0;
 }
+
+.sp-button {
+    border-radius: 3px;
+    border: 0;
+}
+
+.sp-button-red {
+    background: linear-gradient(#D00000, #B20000);
+}
+
+.sp-button-green {
+    background: linear-gradient(#00BB10, #00840B);
+}
+
+.sp-button-blue {
+    background: linear-gradient(#0095E0, #0074AF);
+}
+
+.sp-button-yellow {
+    background: linear-gradient(#E7A200, #B88100);
+}
+
+.sp-button-orange {
+    background: linear-gradient(#FF8400, #DE7300);
+}
+
+.sp-button-purple {
+    background: linear-gradient(#BB00E0, #9E00BE);
+}

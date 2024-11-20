@@ -24,7 +24,7 @@ import { PagamentoService } from '../shared/pagamento.service';
   styleUrl: './carrinho.component.css'
 })
 export class CarrinhoComponent {
-  protected isVisible: boolean = true;
+  protected isVisible: boolean = false;
   tiposPagamento = [ 'Pix', 'Cartão', 'Boleto' ];
   tipoPagamentoSelecionado: string = 'Pix';
   carrinho: Carrinho;

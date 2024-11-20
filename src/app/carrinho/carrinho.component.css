@@ -99,6 +99,24 @@
 }
 
 :host ::ng-deep .carrinho {
+
+    ::-webkit-scrollbar {
+    width: 0.6875rem;
+    border-radius: 10px;
+}
+
+    ::-webkit-scrollbar-thumb {
+    border-color: rgb(242, 243, 244);
+    border-style: solid;
+    border-radius: 10px;
+    border-width: 0.34375rem 0.171875rem;
+    background-color: rgb(222, 224, 228);
+}
+
+    ::-webkit-scrollbar-track {
+    background-color: rgb(242, 243, 244);
+}
+
     width: 30%;
     /* backgroudColor: '#0E2B63'; */
     min-width: 30%;

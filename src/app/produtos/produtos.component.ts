@@ -3,7 +3,7 @@ import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { PaginatorModule, PaginatorState } from 'primeng/paginator';
 import { Carrinho, CarrinhoService } from '../shared/carrinho.service';
-import { Page, Produto, ProdutoService } from './produtos.service';
+import { Category, Page, Produto, ProdutoService } from './produtos.service';
 
 @Component({
   selector: 'app-produtos',
@@ -19,7 +19,7 @@ import { Page, Produto, ProdutoService } from './produtos.service';
 export class ProdutosComponent implements OnInit, OnDestroy {
   produtos!: Page<Produto>;
   carrinho: Carrinho;
-  categorias: string[];
+  categorias: Category[];
   filtro: string[] = [];
 
   pageSize = 20;

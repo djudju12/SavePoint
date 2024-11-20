@@ -61,8 +61,16 @@
             </select>
         </div>
 
-        <p-button label="Pagar" [style]="{width: '100%'}" (onClick)="pagar()" ></p-button>
-        <p-button label="Limpar Carrinho" [style]="{width: '100%'}" (onClick)="clear()"></p-button>
+        <p-button label="Pagar"
+            [style]="{width: '100%'}"
+            [styleClass]="'sp-button sp-button-blue'"
+            (onClick)="pagar()" />
+
+        <p-button
+            label="Limpar Carrinho"
+            [style]="{width: '100%'}"
+            [styleClass]="'sp-button sp-button-blue'"
+            (onClick)="clear()"/>
     </div>
 
 

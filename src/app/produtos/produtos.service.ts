@@ -21,7 +21,7 @@ export interface Page<T> {
 @Injectable({ providedIn: 'root' })
 export class ProdutoService {
 
-  categories(): string[] {
+  categories(): Category[] {
     return MOST_POPULAR_CATEGORIES;
   }
 
@@ -49,7 +49,53 @@ export class ProdutoService {
   }
 }
 
-const MOST_POPULAR_CATEGORIES = [ "Racing", "MMO", "Sports", "Casual", "Strategy", "RPG", "Simulation", "Adventure", "Indie", "Action" ].reverse();
+export interface Category {
+    color: string;
+    name: string
+}
+
+const MOST_POPULAR_CATEGORIES: Category[] = [
+    {
+        color: "sp-button-orange",
+        name: "Action"
+    },
+    {
+        color: "sp-button-blue",
+        name: "Indie"
+    },
+    {
+        color: "sp-button-purple",
+        name: "Adventure"
+    },
+    {
+        color: "sp-button-red",
+        name: "Simulation"
+    },
+    {
+        color: "sp-button-orange",
+        name: "RPG"
+    },
+    {
+        color: "sp-button-yellow",
+        name: "Strategy"
+    },
+    {
+        color: "sp-button-purple",
+        name: "MMO"
+    },
+    {
+        color: "sp-button-green",
+        name: "Sports"
+    },
+    {
+        color: "sp-button-blue",
+        name: "Casual"
+    },
+    {
+        color: "sp-button-yellow",
+        name: "Racing"
+    },
+];
 
 const PRODUTOS = [
   {
