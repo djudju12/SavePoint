@@ -3,8 +3,12 @@
     [modal]="true"
     [(visible)]="isVisible"
     [dismissableMask]="true"
-    [style]="{ width: '50rem', minWidth: '40rem', height: '100vh', minHeight: '60vh'}"
->
+    [resizable]="false"
+    [draggable]="false"
+    [position]="'right'"
+    [styleClass]="'carrinho'"
+    >
+    <!-- [maskStyle]="{top: '5rem'}" -->
 
     <p-divider type="solid" [style]="{marginTop: '0'}" />
 
