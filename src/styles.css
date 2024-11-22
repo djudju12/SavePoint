@@ -77,6 +77,7 @@ body {
 .sp-button {
     border-radius: 3px;
     border: 0;
+    box-shadow: 0 0 0 0px;
 }
 
 .sp-button-red {

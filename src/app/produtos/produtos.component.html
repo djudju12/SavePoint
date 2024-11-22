@@ -1,18 +1,25 @@
 
 <div class="produtos-page">
 
-    <div class="page-filters">
+    <form (ngSubmit)="filtrar()">
+        <div class="page-filters">
 
-        <div class="categorias-lista">
-            @for (categoria of categorias; track $index) {
-                <p-button
-                    (onClick)="filtrar(categoria.name)"
-                    [label]="categoria.name"
-                    [styleClass]="'filter-button sp-button ' + categoria.color + ' ' + (filtro !== '' && filtro !== categoria.name ? 'sp-button-disabled' : '')"
-                />
-            }
+            <div class="search-filter" >
+                <button class="pi pi-search"></button>
+                <input [(ngModel)]="searchStr" name="searchStr" class="search" placeholder="Buscar" type="text">
+            </div>
+
+            <div class="categorias-lista">
+                @for (categoria of categorias; track $index) {
+                    <p-button
+                        (onClick)="setFiltroCategoria(categoria.name); filtrar()"
+                        [label]="categoria.name"
+                        [styleClass]="'filter-button sp-button ' + categoria.color + ' ' + (filtro !== '' && filtro !== categoria.name ? 'sp-button-disabled' : '')"
+                    />
+                }
+            </div>
         </div>
-    </div>
+    </form>
 
     <div class="card-container">
 
@@ -37,7 +44,7 @@
                         <span [class]="getStarRating(produto.rating, 0.96)"></span>
                     </div>
 
-                    <p class="card-content">$ {{produto.preco}}</p>
+                    <p class="card-content">R$ {{produto.preco}}</p>
 
                 </div>
 

@@ -67,7 +67,8 @@
     flex-direction: row;
     width: 100%;
     overflow: auto;
-    padding-bottom: 0.5rem;
+    padding-bottom: 0.4rem;
+    margin-top: 2%;
 }
 
 :host ::ng-deep .filter-button {
@@ -75,3 +76,48 @@
     width: 135px;
     height: 35px;
 }
+
+.search-filter {
+    display: flex;
+    align-items: center;
+    /* border: 1px solid #ccc; */
+    border-radius: 5px;
+    overflow: hidden;
+    height: 2.5rem;
+    width: 40%; /* Adjust as needed */
+    input::placeholder {
+        color: #006CD9;
+    }
+
+
+  }
+
+  .search-filter button {
+    background-color: #E9E9E9;
+    border: none;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    color: #006CD9;
+  }
+
+  .search-filter button:hover {
+    background-color: #e0e0e0;
+  }
+
+  .search-filter .search {
+    flex: 1;
+    border: none;
+    padding: 10px;
+    outline: none;
+    color: #006CD9;
+    background-color: #E9E9E9;
+  }
+
+  .search-filter button,
+  .search-filter .search {
+    height: 40px;
+  }

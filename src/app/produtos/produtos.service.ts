@@ -25,8 +25,12 @@ export class ProdutoService {
     return MOST_POPULAR_CATEGORIES;
   }
 
-  query(page: number = 0, pageSize: number = 10, categories: string[] | undefined = []): Page<Produto> {
-    const games =  categories && categories.length > 0 ? this.filterCategories(categories, PRODUTOS) : PRODUTOS;
+  query(page: number = 0, pageSize: number = 10, categories: string[] | undefined = [], nome: string = ""): Page<Produto> {
+    let games = categories && categories.length > 0 ? this.filterCategories(categories, PRODUTOS) : PRODUTOS;
+    if (nome !== "") {
+        console.log(nome);
+        games = games.filter(game => game.nome.toLocaleLowerCase().startsWith(nome));
+    }
 
     return {
       items: games.slice(page*pageSize, (page + 1)*pageSize),
