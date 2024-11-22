@@ -112,3 +112,7 @@ body {
 .sp-button-action {
     background: #006CDA;
 }
+
+.sp-button-disabled {
+    opacity: 40%;
+}

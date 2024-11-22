@@ -39,7 +39,7 @@ export class ProdutoService {
   private filterCategories(categories: string[], games: Produto[]) {
     return games.filter(game => {
       for (let category of categories) {
-        if (!game.categorias.includes(category)) {
+        if (category !== "" && !game.categorias.includes(category)) {
             return false;
         }
       }

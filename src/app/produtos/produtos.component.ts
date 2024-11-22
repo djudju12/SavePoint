@@ -20,7 +20,7 @@ export class ProdutosComponent implements OnInit, OnDestroy {
   produtos!: Page<Produto>;
   carrinho: Carrinho;
   categorias: Category[];
-  filtro: string[] = [];
+  filtro: string = "";
 
   pageSize = 20;
   private page = 0;
@@ -43,7 +43,7 @@ export class ProdutosComponent implements OnInit, OnDestroy {
   }
 
   find() {
-    this.produtos = this.produtoService.query(this.page, this.pageSize, this.filtro);
+    this.produtos = this.produtoService.query(this.page, this.pageSize, [this.filtro]);
   }
 
   addProduto(produto: Produto) {
@@ -71,13 +71,13 @@ export class ProdutosComponent implements OnInit, OnDestroy {
   }
 
   filtrar(categoria: string) {
-    this.filtro.push(categoria);
+    this.filtro = this.filtro === categoria ? "" : categoria;
     this.page = 0;
     this.find();
   }
 
   removerFiltro(categoria: string) {
-    this.filtro = this.filtro.filter(c => c !== categoria);
+    this.filtro = "";
     this.page = 0;
     this.find();
   }
