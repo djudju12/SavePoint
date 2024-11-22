@@ -55,9 +55,9 @@ body {
     font-size: 0.85rem;
 }
 
-.pi.pi-user, .pi.pi-shopping-cart {
+.pi.pi-receipt, .pi.pi-shopping-cart {
     font-size: x-large;
-    color: #ffffff;
+    color: #006CD9;
 }
 
 .card-content-container {

@@ -1,20 +1,27 @@
-<div class="nav sticky-top">
+<div class="nav sticky-top card">
     <div class="container">
         <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
 
-            <a href="#" class="navbar-title navbar-brand logo float-left">
-                <span style="white-space: pre;">PLACEHOLDER</span>
+            <a href="#" class="navbar-brand float-left">
+                <img class="logo" src="logo.png"/>
+                <span class="navbar-title" style="white-space: pre;">Save Point</span>
             </a>
 
             <div class="collapse navbar-collapse" >
                 <ul class="navbar-nav ms-auto text-left">
                     <li class="nav-item dropdown" id="perfil-item">
-                        <p-button class="nav-button" iconPos="right" icon="pi pi-user" [rounded]="true" [text]="true"/>
+                        <p-button
+                            [styleClass]="'nav-button'"
+                            iconPos="right"
+                            icon="pi pi-receipt"
+                            [rounded]="true"
+                            [text]="true"
+                        />
                     </li>
                     <li class="nav-item">
                         <div>
                             <p-button
-                                class="nav-button"
+                                [styleClass]="'nav-button'"
                                 icon="pi pi-shopping-cart"
                                 [rounded]="true"
                                 (onClick)="toggleCarrinho()"
