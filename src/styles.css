@@ -102,3 +102,13 @@ body {
 .sp-button-purple {
     background: linear-gradient(#BB00E0, #9E00BE);
 }
+
+.sp-button-outlined {
+    background-color: transparent;
+    color: #006CDA;
+    border: 1px solid;
+}
+
+.sp-button-action {
+    background: #006CDA;
+}
