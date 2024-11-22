@@ -18,4 +18,5 @@ export class NavbarComponent {
   toggleCarrinho() {
     this.carrinho.toggle();
   }
+
 }

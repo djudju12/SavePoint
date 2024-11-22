@@ -61,4 +61,12 @@ export class CarrinhoComponent {
       this.carrinhoService.clear();
     }
   }
+
+  totalProdutos(): string {
+    if (this.carrinho.produtos.length > 0) {
+        return this.carrinho.produtos.length < 10 ? String(this.carrinho.produtos.length) : '+9';
+    }
+
+    return '';
+  }
 }

@@ -4,7 +4,7 @@
 
             <a href="#" class="navbar-brand float-left">
                 <img class="logo" src="logo.png"/>
-                <span class="navbar-title" style="white-space: pre;">Save Point</span>
+                <span class="navbar-title">Save Point</span>
             </a>
 
             <div class="collapse navbar-collapse" >
@@ -26,7 +26,13 @@
                                 [rounded]="true"
                                 (onClick)="toggleCarrinho()"
                                 [text]="true"
-                            />
+                            >
+
+                            @if (carrinho &&  carrinho.totalProdutos() !== '') {
+                                <span class="exclamation">{{carrinho.totalProdutos()}}</span>
+                            }
+
+                            </p-button>
                         </div>
                     </li>
                 </ul>

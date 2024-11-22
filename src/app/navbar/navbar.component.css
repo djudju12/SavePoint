@@ -14,22 +14,45 @@
   }
 
 .navbar-brand .logo {
-    height: 2em; /* Match the height of the text */
-    margin-right: 8px; /* Add spacing between image and text */
+    height: 2em;
+    margin-right: 8px;
     vertical-align: middle;
 }
 
 .navbar-brand .navbar-title {
     color: #006CD9;
     font-size: 1.5em;
-    line-height: 1; /* Ensure text is vertically centered */
+    line-height: 1;
     white-space: pre;
     font-weight: bold;
 }
+
 :host ::ng-deep .nav-button {
     border: 2px solid #006CD9;
     border-radius: 5px;
     color: #006CD9;
+
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+:host ::ng-deep .exclamation {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: #FF9900;
+    color: white;
+    font-weight: bold;
+    font-size: 0.8rem;
+    width: 45%;
+    height: 45%;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: translate(-10%, 10%);
 }
 
 ul.navbar-nav {
