@@ -87,8 +87,8 @@
     width: 40%; /* Adjust as needed */
     input::placeholder {
         color: #006CD9;
+        display: none;
     }
-
 
   }
 
@@ -115,6 +115,7 @@
     outline: none;
     color: #006CD9;
     background-color: #E9E9E9;
+
   }
 
   .search-filter button,
