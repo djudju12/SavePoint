@@ -6,25 +6,25 @@ export class Carrinho {
 
   constructor() { }
 
-  public add(newProduto: Produto) {
+  add(newProduto: Produto) {
     if (!this.alreadyInCart(newProduto)) {
       this.produtos.push(newProduto);
     }
   }
 
-  public remove(produto: Produto) {
+  remove(produto: Produto) {
     this.produtos = this.produtos.filter(p => p.id !== produto.id);
   }
 
-  public alreadyInCart(produto: Produto): boolean {
+  alreadyInCart(produto: Produto): boolean {
     return this.produtos.some(cartProduto => cartProduto.id === produto.id);
   }
 
-  public clear() {
+  clear() {
     this.produtos = [];
   }
 
-  public total(): number {
+  total(): number {
     return this.produtos.reduce((acc, obj) => acc + obj.preco, 0);
   }
 }
