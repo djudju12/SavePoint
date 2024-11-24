@@ -1,4 +1,6 @@
-<app-navbar></app-navbar>
-<div class="main container" #main>
+@if (notInLogInPage()) {
+    <app-navbar></app-navbar>
+}
+<div [class]=" notInLogInPage() ? 'main container' : '' " #main>
     <router-outlet></router-outlet>
 </div>

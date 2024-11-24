@@ -1,0 +1,42 @@
+<div class="login-page">
+  <div class="left-panel">
+    <div class="header-content">
+      <h2>SavePoint Store</h2>
+      <p>O Point do seu jogo favorito!</p>
+    </div>
+
+    <div class="game-images">
+      <img src="out/275.jpg" alt="Red Dead Redemption 2">
+      <img src="out\380.jpg" alt="God of War">
+      <img src="out\307.jpg" alt="Dark Souls 3">
+    </div>
+  </div>
+
+  <div class="right-panel">
+    <form (ngSubmit)="onSubmit()" class="login-container">
+      <div class="form-group">
+        <label for="username">Usuário</label>
+        <input id="username" [(ngModel)]="username" name="username"
+          class="login-input" placeholder="Digite seu usuário"
+          type="text" autocomplete="off" required />
+      </div>
+
+      <div class="form-group">
+        <label for="password">Senha</label>
+        <input id="password" [(ngModel)]="password" name="password"
+          class="login-input" placeholder="Digite sua senha"
+          type="password" required />
+      </div>
+
+      <div class="button-container">
+        <p-button type="submit" label="Entrar"
+          [styleClass]="'filter-button sp-button sp-button-outlined'"></p-button>
+      </div>
+
+      <p-dialog [(visible)]="displaySuccessDialog" header="Login Sucesso!"
+        modal="true" [closable]="false">
+        <p>Bem-vindo à Loja de Games!</p>
+      </p-dialog>
+    </form>
+  </div>
+</div>
