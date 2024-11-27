@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
@@ -25,11 +25,12 @@ import { UserService } from '../shared/user.service';
   templateUrl: './carrinho.component.html',
   styleUrl: './carrinho.component.css'
 })
-export class CarrinhoComponent {
+export class CarrinhoComponent implements OnDestroy {
   protected isVisible: boolean = false;
   tiposPagamento = [ 'Pix', 'Cartão', 'Boleto' ];
   tipoPagamentoSelecionado: string = 'Pix';
   carrinho: Carrinho;
+  private carrinhoTopic: any;
 
   constructor (
     private carrinhoService: CarrinhoService,
@@ -38,13 +39,15 @@ export class CarrinhoComponent {
     private router: Router
   ) {
     this.carrinho = this.carrinhoService.findCarrinho();
+    this.carrinhoTopic = this.carrinhoService.carrinhoTopic.subscribe(c => this.carrinho = c);
+  }
+
+  ngOnDestroy(): void {
+    this.carrinhoTopic.unsubscribe();
   }
 
   toggle() {
     this.isVisible = !this.isVisible
-    if (this.isVisible) {
-      this.carrinho = this.carrinhoService.findCarrinho();
-    }
   }
 
   clear() {

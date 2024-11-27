@@ -28,6 +28,7 @@ body {
 
 .p-dialog-content {
     overflow-x: hidden;
+    overflow-y: hidden;
 }
 
 .card-image {
