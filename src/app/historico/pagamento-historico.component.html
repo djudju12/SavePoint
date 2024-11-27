@@ -1,0 +1,30 @@
+<div class="historico-overlay" *ngIf="mostrarHistorico">
+  <div class="historico-modal">
+    <div class="historico-header">
+      <h2>LISTA DE PEDIDOS</h2>
+      <button class="fechar-btn" (click)="fecharHistorico()">X</button>
+    </div>
+    
+    <div class="historico-content">
+      <ng-container *ngFor="let historico of historicoPagamentos">
+        <div class="pedido" *ngFor="let pagamento of historico.pagamentos">
+          <div class="pedido-header">
+            <span class="data">Data: {{pagamento.dataCompra | date:'dd/MM/yyyy'}}</span>
+          </div>
+          
+          <div class="pedido-items">
+            <div class="item" *ngFor="let produto of pagamento.produtos">
+              <span class="item-nome">{{produto.nome}}</span>
+              <span class="item-preco">{{formatarPreco(produto.preco)}}</span>
+            </div>
+          </div>
+          
+          <div class="pedido-footer">
+            <span class="subtotal-label">Subtotal do Pedido:</span>
+            <span class="subtotal-valor">{{formatarPreco(pagamento.total)}}</span>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</div> 

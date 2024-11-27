@@ -16,18 +16,13 @@ export class LoginComponent {
   username: string = 'Teste';
   password: string = '12345';
   errorMessage: string | null = null;
-  displaySuccessDialog: boolean = false;
 
   constructor(private router: Router) {}
 
   onSubmit() {
     if (this.username === 'Teste' && this.password === '12345') {
       this.errorMessage = null;
-      this.displaySuccessDialog = true;
-      setTimeout(() => {
-        this.displaySuccessDialog = false; 
-        this.router.navigate(['/produtos']);
-      }, 1000);
+      this.router.navigate(['/produtos']);
     } else {
       this.errorMessage = 'Credenciais inválidas. Tente novamente.';
     }

@@ -46,7 +46,7 @@ export class PagamentoService {
     window.localStorage.setItem(this.PAGAMENTO_STORAGE_KEY, JSON.stringify(historico));
   }
 
-  private getHistoricoPagamentos(): PagamentoHistorico[] {
+  public getHistoricoPagamentos(): PagamentoHistorico[] {
     const pagamentosStr = window.localStorage.getItem(this.PAGAMENTO_STORAGE_KEY) || '';
     if (pagamentosStr === '') {
       return [];
