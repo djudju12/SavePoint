@@ -25,7 +25,7 @@
   padding: 1%;
   border: 1px solid #ddd;
   border-radius: 5px;
-  height: 20%;
+  max-height: 30%;
   width: 100%;
 }
 
@@ -37,7 +37,15 @@ span {
 .with-price {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   width: 100%;
 
   /* text-align: right; */
+}
+.with-price.subtotal {
+  height: 50px;
+  border-top: 1px solid #ccc;
+  margin-top: 10px;
+  padding: 0 10px;
+  font-weight: bold;
 }
