@@ -1,38 +1,45 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { ButtonModule } from 'primeng/button';
+import { DialogModule } from 'primeng/dialog';
+import { DividerModule } from 'primeng/divider';
 import { PagamentoHistorico, PagamentoService } from '../shared/pagamento.service';
 
 @Component({
+  standalone: true,
   selector: "app-pagamento-historico",
   templateUrl: "./pagamento-historico.component.html",
+  imports: [
+    DatePipe, DialogModule, DividerModule, ButtonModule
+  ],
   styleUrls: ["./pagamento-historico.component.css"],
 })
 export class PagamentoHistoricoComponent implements OnInit {
-  protected isVisible: boolean = false;
-  historicoPagamentos: PagamentoHistorico[] = [];
-  mostrarHistorico: boolean = false;
+  protected isVisible: boolean = true;
+  historico: PagamentoHistorico | null = null;
 
-  constructor(private pagamentoService: PagamentoService) {}
+  constructor(
+    private pagamentoService: PagamentoService
+  ) { }
 
   ngOnInit(): void {
-    this.toggle();
-  }
-
-  toggle(): void {
-    this.isVisible = !this.isVisible;
-    if (this.isVisible) {
-      this.historicoPagamentos = this.pagamentoService.getHistoricoPagamentos();
-    }
-  }
-
-  fecharHistorico(): void {
-    this.mostrarHistorico = false;
+    this.historico = this.getHistorico(this.pagamentoService.getHistoricoPagamentos());
+    this.pagamentoService.historicoTopic.subscribe(novoHist => this.historico = this.getHistorico(novoHist));
   }
 
   formatarPreco(valor: number): string {
     return `R$ ${valor.toFixed(2).replace(".", ",")}`;
   }
 
-  abrirHistorico(): void {
-    this.mostrarHistorico = true;
+  toggle(): void {
+    this.isVisible = !this.isVisible;
+  }
+
+  private getHistorico(hist: PagamentoHistorico[]): PagamentoHistorico | null {
+    if (hist.length > 0) {
+      return hist[0];
+    }
+
+    return null;
   }
 }

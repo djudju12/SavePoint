@@ -1,4 +1,4 @@
-import { Injectable } from "@angular/core";
+import { EventEmitter, Injectable } from "@angular/core";
 import { Produto } from "../produtos/produtos.service";
 import { Carrinho } from "./carrinho.service";
 
@@ -10,7 +10,6 @@ export class Pagamento {
     public total: number,
     public produtos: Produto[]
   ) { }
-
 }
 
 export class PagamentoHistorico {
@@ -25,6 +24,9 @@ export class PagamentoHistorico {
 @Injectable({ providedIn: 'root' })
 export class PagamentoService {
   private readonly PAGAMENTO_STORAGE_KEY = 'SAVE_POINT_PAGAMENTOS';
+
+  historicoTopic = new EventEmitter<PagamentoHistorico[]>();
+
 
   pagar(usuarioId: number, tipoPagamento: string, carrinho: Carrinho) {
     const historico = this.getHistoricoPagamentos();
@@ -44,6 +46,7 @@ export class PagamentoService {
     }
 
     window.localStorage.setItem(this.PAGAMENTO_STORAGE_KEY, JSON.stringify(historico));
+    this.historicoTopic.emit(historico);
   }
 
   public getHistoricoPagamentos(): PagamentoHistorico[] {
@@ -54,4 +57,5 @@ export class PagamentoService {
 
     return JSON.parse(pagamentosStr);
   }
+
 }

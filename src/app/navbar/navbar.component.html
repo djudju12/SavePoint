@@ -15,6 +15,7 @@
                             iconPos="right"
                             icon="pi pi-receipt"
                             [rounded]="true"
+                            (onClick)="toggleHistorico()"
                             [text]="true"
                         />
                     </li>
@@ -40,4 +41,7 @@
         </nav>
     </div>
 </div>
+
+<app-pagamento-historico></app-pagamento-historico>
+
 <app-carrinho></app-carrinho>

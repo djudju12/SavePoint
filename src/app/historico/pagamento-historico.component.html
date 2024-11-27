@@ -1,30 +1,39 @@
-<div class="historico-overlay" *ngIf="mostrarHistorico">
-  <div class="historico-modal">
-    <div class="historico-header">
-      <h2>LISTA DE PEDIDOS</h2>
-      <button class="fechar-btn" (click)="fecharHistorico()">X</button>
-    </div>
-    
-    <div class="historico-content">
-      <ng-container *ngFor="let historico of historicoPagamentos">
-        <div class="pedido" *ngFor="let pagamento of historico.pagamentos">
-          <div class="pedido-header">
-            <span class="data">Data: {{pagamento.dataCompra | date:'dd/MM/yyyy'}}</span>
-          </div>
-          
-          <div class="pedido-items">
-            <div class="item" *ngFor="let produto of pagamento.produtos">
-              <span class="item-nome">{{produto.nome}}</span>
-              <span class="item-preco">{{formatarPreco(produto.preco)}}</span>
+<p-dialog
+    header="MEU HISTÓRICO"
+    [modal]="true"
+    [(visible)]="isVisible"
+    [dismissableMask]="true"
+    [resizable]="false"
+    [draggable]="false"
+    [position]="'right'"
+    [styleClass]="'dialogo'"
+    >
+    <p-divider type="solid" [style]="{marginTop: '0'}" />
+
+    @if (historico !== null) {
+      <div class="content">
+          @for (pagamento of historico.pagamentos; track $index) {
+            <div class="hists">
+              <div class="hist-items">
+                <span>Data: {{pagamento.dataCompra | date:  'dd/MM/yyyy'}}</span>
+                <span>Método de Pagamento: {{pagamento.pagamento}}</span>
+                <span>Itens: </span>
+                @for (item of pagamento.produtos; track $index) {
+                  <div class="with-price">
+                    <span>{{item.nome}}</span>
+                    <span>{{formatarPreco(item.preco)}}</span>
+                  </div>
+                }
+              </div>
+
+              <div class="with-price">
+                <span>Subtotal do pedido:</span>
+                <span>{{formatarPreco(pagamento.total)}}</span>
+              </div>
             </div>
-          </div>
-          
-          <div class="pedido-footer">
-            <span class="subtotal-label">Subtotal do Pedido:</span>
-            <span class="subtotal-valor">{{formatarPreco(pagamento.total)}}</span>
-          </div>
-        </div>
-      </ng-container>
-    </div>
-  </div>
-</div> 
+          }
+
+      </div>
+    }
+
+</p-dialog>
