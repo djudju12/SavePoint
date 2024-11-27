@@ -1,5 +1,5 @@
 <p-dialog
-    header="MEU HISTÓRICO"
+    [header]="'MEU HISTÓRICO' + (user !== null ? ' - Davy Jones' : '')"
     [modal]="true"
     [(visible)]="isVisible"
     [dismissableMask]="true"
@@ -26,7 +26,6 @@
                 }
               </div>
 
-              <!-- <hr/> -->
               <div class="with-price subtotal">
                 <span>Subtotal do pedido:</span>
                 <span>{{formatarPreco(pagamento.total)}}</span>

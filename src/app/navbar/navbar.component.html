@@ -9,7 +9,32 @@
 
             <div class="collapse navbar-collapse" >
                 <ul class="navbar-nav ms-auto text-left">
-                    <li class="nav-item dropdown" id="perfil-item">
+
+                    @if (isLogged()) {
+                        <li class="nav-item dropdown">
+                            <p-button
+                                [styleClass]="'nav-button'"
+                                iconPos="right"
+                                icon="pi pi-user-minus"
+                                [rounded]="true"
+                                (onClick)="logoff()"
+                                [text]="true"
+                            />
+                        </li>
+                    } @else {
+                        <li class="nav-item dropdown">
+                            <p-button
+                                [styleClass]="'nav-button'"
+                                iconPos="right"
+                                icon="pi pi-user-plus"
+                                [rounded]="true"
+                                (onClick)="gotoLogin()"
+                                [text]="true"
+                            />
+                        </li>
+                    }
+
+                    <li class="nav-item dropdown">
                         <p-button
                             [styleClass]="'nav-button'"
                             iconPos="right"
@@ -19,6 +44,7 @@
                             [text]="true"
                         />
                     </li>
+
                     <li class="nav-item">
                         <div>
                             <p-button
@@ -36,6 +62,7 @@
                             </p-button>
                         </div>
                     </li>
+
                 </ul>
             </div>
         </nav>

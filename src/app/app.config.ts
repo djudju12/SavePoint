@@ -4,6 +4,7 @@ import { provideRouter } from '@angular/router';
 import { routes } from './app.routes';
 import { ProdutoService } from './produtos/produtos.service';
 import { PagamentoService } from './shared/pagamento.service';
+import { UserService } from './shared/user.service';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -11,6 +12,7 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideAnimations(),
     ProdutoService,
-    PagamentoService
+    PagamentoService,
+    UserService
   ]
 };

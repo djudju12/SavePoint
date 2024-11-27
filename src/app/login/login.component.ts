@@ -2,27 +2,31 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
-import { MessageModule } from 'primeng/message';
 import { DialogModule } from 'primeng/dialog';
+import { MessageModule } from 'primeng/message';
+import { UserService } from '../shared/user.service';
 
 @Component({
   standalone: true,
   selector: 'app-login',
   imports: [FormsModule, ButtonModule, MessageModule, DialogModule],
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css'], 
+  styleUrls: ['./login.component.css'],
 })
 export class LoginComponent {
-  username: string = 'Teste';
-  password: string = '12345';
+  username: string = '';
+  password: string = '';
   errorMessage: string | null = null;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private userService: UserService) { }
 
   onSubmit() {
-    if (this.username === 'Teste' && this.password === '12345') {
+    if (this.userService.login(this.username, this.password)) {
       this.errorMessage = null;
-      this.router.navigate(['/produtos']);
+      console.log(
+        "hello"
+      )
+      this.router.navigate(['']);
     } else {
       this.errorMessage = 'Credenciais inválidas. Tente novamente.';
     }

@@ -55,7 +55,7 @@ body {
     font-size: 0.85rem;
 }
 
-.pi.pi-receipt, .pi.pi-shopping-cart, .pi.pi-cart-arrow-down {
+.pi.pi-receipt, .pi.pi-shopping-cart, .pi.pi-user-minus, .pi.pi-user-plus {
     font-size: x-large;
     color: #006CD9;
 }

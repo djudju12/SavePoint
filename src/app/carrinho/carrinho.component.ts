@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
 import { DividerModule } from 'primeng/divider';
@@ -8,6 +9,7 @@ import { OrderListModule } from 'primeng/orderlist';
 import { Produto } from '../produtos/produtos.service';
 import { Carrinho, CarrinhoService } from '../shared/carrinho.service';
 import { PagamentoService } from '../shared/pagamento.service';
+import { UserService } from '../shared/user.service';
 
 @Component({
   selector: 'app-carrinho',
@@ -31,11 +33,11 @@ export class CarrinhoComponent {
 
   constructor (
     private carrinhoService: CarrinhoService,
-    private pagamentoService: PagamentoService
+    private pagamentoService: PagamentoService,
+    private userService: UserService,
+    private router: Router
   ) {
     this.carrinho = this.carrinhoService.findCarrinho();
-    this.carrinhoService.carrinhoTopic
-      .subscribe(newCarrinho => this.carrinho = newCarrinho);
   }
 
   toggle() {
@@ -56,9 +58,14 @@ export class CarrinhoComponent {
   }
 
   pagar() {
-    if (this.carrinho.produtos.length > 0) {
-      this.pagamentoService.pagar(0, this.tipoPagamentoSelecionado, this.carrinho);
-      this.carrinhoService.clear();
+    const user = this.userService.getLoggedUser();
+    if (user === null) {
+      this.router.navigate(['/login']);
+    } else {
+      if (this.carrinho.produtos.length > 0) {
+        this.pagamentoService.pagar(user.id, this.tipoPagamentoSelecionado, this.carrinho);
+        this.carrinhoService.clear();
+      }
     }
   }
 
